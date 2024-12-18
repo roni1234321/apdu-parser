@@ -17,7 +17,7 @@ def parse_description_file(filename):
     try:
         f = open(filename, "r")
     except:
-        print "[*] Error while opening file: {}".format(filename)
+        print( "[*] Error while opening file: {}".format(filename))
 
     lines = f.readlines()
     results = []
@@ -25,7 +25,7 @@ def parse_description_file(filename):
         for line in lines:
             results.append(line.strip().split("\t"))
     except:
-        print "[*] Error while parsing descriptions file: {}".format(filename)
+        print( "[*] Error while parsing descriptions file: {}".format(filename))
 
     f.close()
     return results
@@ -102,7 +102,7 @@ def parse_apdu_response(line, response_descriptions, last_apdu_command=None):
 
 
 def show_apdu_command(desc, cla, ins, p1, p2, lc, le, data, colors):
-    print "{} : {}\n".format(ins, desc)  # INS : INS_NAME (INS_DESC)
+    print( "{} : {}\n".format(ins, desc))  # INS : INS_NAME (INS_DESC)
 
     if colors:
         cla = RED + cla + ENDC
@@ -124,11 +124,11 @@ def show_apdu_command(desc, cla, ins, p1, p2, lc, le, data, colors):
     if le is not None:
         line += " " + le
 
-    print line + "\n"
+    print( line + "\n")
 
 
 def show_apdu_response(desc, category, sw1, sw2, data, colors):
-    print "{} {} : {}\n".format(sw1, sw2, desc)  # SW1 SW2 : DESC
+    print( "{} {} : {}\n".format(sw1, sw2, desc))  # SW1 SW2 : DESC
 
     if colors:
         if category == "E":  # Error
@@ -151,7 +151,7 @@ def show_apdu_response(desc, category, sw1, sw2, data, colors):
     if data is not None:
         line += " ".join(data) + " "
 
-    print line + sw1 + " " + sw2 + "\n"
+    print( line + sw1 + " " + sw2 + "\n")
 
 
 def main():
@@ -183,8 +183,8 @@ def main():
 
     # Input file
     if options.input_file is None:
-        print parser.usage
-        print
+        print(parser.usage)
+        print()
         exit(0)
     else:
         input_file = open(options.input_file, "r")
@@ -203,8 +203,8 @@ def main():
         output_file = open(options.output_file, "w")
 
     if commands_only and options.responses_only:
-        print parser.usage
-        print "[*] Error: --commands and --responses options cannot be set at the same time"
+        print( parser.usage)
+        print( "[*] Error: --commands and --responses options cannot be set at the same time")
         exit(0)
 
     # Custom command descriptions
